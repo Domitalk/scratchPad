@@ -31,15 +31,25 @@ class SceneMain extends Phaser.Scene {
         });
 
         // apply animation to the character 
-        this.char.play('walk')
+        this.char.play('walk'); 
+
+        //another method to move char with this.tweens 
+        // the tweens is target end point with a bunch of paramters to determine behavior on the way there 
+        this.tweens.add({ 
+            targets: this.char, 
+            duration: 5000, 
+            x: game.config.width, 
+            y: 0
+        })
     }
     update() {
         // constantly running loop 
 
-        this.char.x += 2; 
-        if (this.char.x > game.config.width) {
-            this.char.x = 0; 
-        }
+        // update loop to move char 
+        // this.char.x += 2; 
+        // if (this.char.x > game.config.width) {
+        //     this.char.x = 0; 
+        // };
     
     }
     customFunctions() {
