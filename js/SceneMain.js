@@ -35,13 +35,32 @@ class SceneMain extends Phaser.Scene {
 
         //another method to move char with this.tweens 
         // the tweens is target end point with a bunch of paramters to determine behavior on the way there 
+
+        this.doWalk()
+    }
+
+    doWalk() {
         this.tweens.add({ 
             targets: this.char, 
             duration: 5000, 
             x: game.config.width, 
-            y: 0
-        })
-    }
+            y: 0, 
+            alpha: 0, 
+            onComplete: this.onCompleteHandler.bind(this)
+            // onCompleteParams: [this]
+        });
+    };
+
+    onCompleteHandler(tween, targets, custom) {
+        // console.log("Complete!")
+        // console.log(targets)
+        var char = targets[0]
+        char.x = 0; 
+        char.y = game.config.height / 2;
+        char.alpha = 1;  
+        this.doWalk();
+    };
+
     update() {
         // constantly running loop 
 
